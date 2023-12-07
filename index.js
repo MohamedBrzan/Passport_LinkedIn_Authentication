@@ -56,7 +56,7 @@ app.use(passport.session());
 
 app.get('/', (req, res) => {
   res.send(
-    `<h1>Please Navigate to <a href="https://linkedin-passport-authentication.onrender.com//auth/linkedin" target="_blank">Sign In</a> to login</h1>`
+    `<h1>Please Navigate to <a href="https://linkedin-passport-authentication.onrender.com/auth/linkedin" target="_blank">Sign In</a> to login</h1>`
   );
 });
 
