@@ -60,10 +60,7 @@ app.get('/', (req, res) => {
   );
 });
 
-app.get(
-  '/auth/linkedin',
-  passport.authenticate('linkedin', { scope: ['profile'] })
-);
+app.get('/auth/linkedin', passport.authenticate('linkedin'));
 
 //* callback route for linkedin to redirect to
 app.get(
@@ -100,5 +97,5 @@ app.get('/logout', (req, res, next) => {
 });
 
 app.listen(3000, () => {
-  debugServer('http://localhost:3000');
+  debugServer('https://linkedin-passport-authentication.onrender.com/');
 });
