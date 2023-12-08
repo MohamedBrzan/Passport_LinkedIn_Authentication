@@ -65,10 +65,10 @@ app.get('/auth/linkedin', passport.authenticate('linkedin'));
 //* callback route for linkedin to redirect to
 app.get(
   '/auth/linkedin/callback',
-  passport.authenticate('linkedin', { failureRedirect: '/' }),
-  (req, res) => {
-    res.redirect('/profile');
-  }
+  passport.authenticate('linkedin', {
+    successRedirect: '/profile',
+    failureRedirect: '/',
+  })
 );
 
 //* Display the user profile
