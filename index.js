@@ -14,18 +14,16 @@ passport.use(
       clientID: process.env.LINKEDIN_CLIENT_ID,
       clientSecret: process.env.LINKEDIN_CLIENT_SECRET,
       callbackURL: process.env.LINKEDIN_CALL_BACK_URL,
-      scope: ['r_emailaddress', 'r_liteprofile'],
-      state: true,
+      profileFields: [
+        'id',
+        'first-name',
+        'last-name',
+        'email-address',
+        'headline',
+      ],
     },
     async function (accessToken, refreshToken, profile, done) {
-      // asynchronous verification, for effect...
-      process.nextTick(function () {
-        // To keep the example simple, the user's LinkedIn profile is returned to
-        // represent the logged-in user. In a typical application, you would want
-        // to associate the LinkedIn account with a user record in your database,
-        // and return that user instead.
-        return done(null, profile);
-      });
+      return done(null, profile);
     }
   )
 );
@@ -60,7 +58,12 @@ app.get('/', (req, res) => {
   );
 });
 
-app.get('/auth/linkedin', passport.authenticate('linkedin'));
+app.get(
+  '/auth/linkedin',
+  passport.authenticate('linkedin', {
+    scope: ['r_basicprofile', 'r_emailaddress'],
+  })
+);
 
 //* callback route for linkedin to redirect to
 app.get(
