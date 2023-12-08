@@ -17,7 +17,7 @@ passport.use(
       scope: ['r_emailaddress', 'r_liteprofile'],
       state: true,
     },
-    function (accessToken, refreshToken, profile, done) {
+    async function (accessToken, refreshToken, profile, done) {
       // asynchronous verification, for effect...
       process.nextTick(function () {
         // To keep the example simple, the user's LinkedIn profile is returned to
