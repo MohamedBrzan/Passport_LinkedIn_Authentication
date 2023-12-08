@@ -66,9 +66,9 @@ app.get('/auth/linkedin', passport.authenticate('linkedin'));
 app.get(
   '/auth/linkedin/callback',
   passport.authenticate('linkedin', {
-    successRedirect: '/',
-    failureRedirect: '/auth/linkedin',
-  })
+    failureRedirect: '/',
+  }),
+  (req, res) => res.redirect('/profile')
 );
 
 //* Display the user profile
